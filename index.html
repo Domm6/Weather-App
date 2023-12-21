@@ -44,6 +44,10 @@
       const apiKey = "accd9b4a5f5b0ca6a7844cf322e0b16b";
       const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=imperial&q=";
 
+      const searchBox = document.querySelector(".search input");
+      const searchBtn = document.querySelector(".search button");
+
+
       async function checkWeather(city) {
         const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
         var data = await response.json();
@@ -56,6 +60,10 @@
         document.querySelector(".wind").innerHTML = data.wind.speed + " mph";
         
       }
+      searchBtn.addEventListener("click", ()=>{
+        checkWeather(searchBox.value);
+      })
+
       checkWeather();
     </script>
   </body>
