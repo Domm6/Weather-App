@@ -34,12 +34,30 @@
             <img src="images/wind.png" alt="wind image" />
             <div>
               <p class="wind">15 mph</p>
-              <p>Windy Speed Fast</p>
+              <p>Windy Speed</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script>
+      const apiKey = "accd9b4a5f5b0ca6a7844cf322e0b16b";
+      const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=imperial&q=";
+
+      async function checkWeather(city) {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+        var data = await response.json();
+
+        console.log(data);
+
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°F";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + " mph";
+        
+      }
+      checkWeather();
+    </script>
   </body>
 </html>
 
